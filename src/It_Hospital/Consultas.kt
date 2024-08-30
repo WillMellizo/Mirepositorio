@@ -1,16 +1,20 @@
 package It_Hospital
 
+// Objeto Consultas que ofrece diversas funciones de consulta y selección en el sistema hospitalario
 object Consultas {
+
+    // Listas predefinidas para varias categorías del hospital
     private val especialidades = listOf("Cardiología", "Dermatología", "Neurología", "Pediatría")
     private val servicios = listOf("Consulta General", "Urgencias", "Control de Enfermedades Crónicas")
     private val cargos = listOf("Médico General", "Especialista", "Cirujano")
     private val areas = listOf("Cardiología", "Dermatología", "Neurología", "Pediatría", "Ginecología", "Cirugía General", "Medicina Interna")
     private val tiposServicios = listOf("Consulta General", "Urgencias", "Chequeo Anual", "Rehabilitación", "Cirugía Programada", "Exámenes Diagnósticos")
     private val cargosMedicos = listOf("Médico General", "Especialista en Cardiología", "Especialista en Dermatología", "Cirujano", "Internista", "Ginecólogo")
-    private val sexos = listOf("Masculino", "Femenino", "Otro", "Prefiere no decir")
-    private val gruposSanguineos = listOf("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-")
+    private val sexos = listOf("Masculino", "Femenino")
+    private val gruposSanguineos = listOf("A+", "A-", "B+", "B-", "O+", "O-")
     private val estadosCiviles = listOf("Soltero", "Casado", "Divorciado", "Viudo", "En Unión Libre")
 
+    // Función genérica para mostrar opciones y seleccionar una
     fun mostrarOpciones(lista: List<String>, mensaje: String): String {
         println(mensaje)
         lista.forEachIndexed { index, item ->
@@ -26,6 +30,7 @@ object Consultas {
         }
     }
 
+    // Funciones específicas para seleccionar categorías predefinidas
     fun seleccionarEspecialidad(): String {
         return mostrarOpciones(especialidades, "\n--- Seleccione una Especialidad ---")
     }
@@ -64,6 +69,7 @@ object Consultas {
         print("Ingrese la especialidad a buscar: ")
         val especialidadBuscada = readln()
 
+        // Filtrar médicos por especialidad
         val medicosEspecialidad = medicos.filter { it.especialidad == especialidadBuscada }
 
         if (medicosEspecialidad.isEmpty()) {
@@ -83,6 +89,7 @@ object Consultas {
         print("Ingrese el código del médico: ")
         val codigoMedicoBuscado = readln()
 
+        // Filtrar citas médicas por código de médico
         val pacientesAtendidos = citasMedicas.filter { it.medico.codigoEmpleado == codigoMedicoBuscado }
 
         if (pacientesAtendidos.isEmpty()) {
@@ -96,7 +103,7 @@ object Consultas {
         }
     }
 
-    // Funciones para listar todos los registros
+    // Función para listar todos los médicos registrados
     fun listarMedicos(medicos: List<Medico>) {
         println("\n--- Listar Médicos ---")
         if (medicos.isEmpty()) {
@@ -109,6 +116,7 @@ object Consultas {
         }
     }
 
+    // Función para listar todos los pacientes registrados
     fun listarPacientes(pacientes: List<Paciente>) {
         println("\n--- Listar Pacientes ---")
         if (pacientes.isEmpty()) {
@@ -121,6 +129,7 @@ object Consultas {
         }
     }
 
+    // Función para listar todas las citas médicas registradas
     fun listarCitasMedicas(citasMedicas: List<CitaMedica>) {
         println("\n--- Listar Citas Médicas ---")
         if (citasMedicas.isEmpty()) {
